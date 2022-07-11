@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}<title>Details</title>{% endblock %}
+{% block content %}
+
+    <section class="mt-6 is-flex is-justify-content-space-around is-flex-wrap-wrap">
+        {% for concert in concerts %}
+            <a class="card-container" href="{% url 'app:book' concert.concert_Date concert.id %}">
+                <div class="custom-card">
+                    <div class="custom-card-item">
+                        <h1 class="card-date-heading">{{ concert.concert_Date }}</h1>
+                        <h2 class="card-header heading is-flex is-justify-content-center is-size-5">Compositions</h2>
+                        {% for composition in concert.get_compositions %}
+                            <div class="description">{{ composition.composition_Name }}</div>
+                        {% endfor %}
+                        <p class="description"><b>Conductor:</b> {{ concert.conductor }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </section>
+
+{% endblock %}

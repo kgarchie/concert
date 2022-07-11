@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}<title>Bookings</title>{% endblock %}
+{% block content %}
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+
+            #section-to-print, #section-to-print * {
+                visibility: visible;
+            }
+
+            #section-to-print {
+                position: absolute;
+                width: 50vw;
+                height: 50vh;
+                display: grid;
+                left: 25vw;
+                place-items: center;
+            }
+        }
+    </style>
+    {% for booking in bookings %}
+        <div class="container card p-4 mt-3" {% if forloop.first %} id="section-to-print" {% endif %}>
+            <div class="first d-flex justify-content-between align-items-center mb-3">
+                <div class="info">
+                    <span class="d-block name">Thank you, {{ user.username }}</span>
+                    <span class="order">Book Number - {{ forloop.revcounter }}</span>
+                </div>
+
+            </div>
+            <div class="detail">
+                <span class="d-block summery">You have successfully booked concert on {{ booking.concert.concert_Date }} at {{ booking.concert.time }}.</span>
+            </div>
+            <hr>
+            <div class="text">
+                <span class="d-block new mb-1">{{ user.email }}</span>
+            </div>
+            <span class="d-block address mb-3">{{ appointment.locale }}</span>
+            <div class="  money d-flex flex-row mt-2 align-items-center">
+                <img src="https://i.imgur.com/ppwgjMU.png" width="20"/>
+                {% if forloop.first %}
+                    <span class="ml-2"><button class="button is-info" onclick="window.print()">Print</button></span>
+                {% else %}
+                    <span class="ml-2"><button class="button is-danger">Expired</button></span>
+                {% endif %}
+
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

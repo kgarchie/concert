@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@700&display=swap');
+
+body {
+    background-color: hsl(200, 20%, 80%);
+    min-height: 95vh;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    min-height: 50vh;
+    align-items: center;
+}
+
+.custom-card {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.custom-card-item {
+    background-color: hsl(0, 0%, 100%);
+    width: 250px;
+    height: 250px;
+    transition: transform 0.2s;
+}
+
+.card-date-heading{
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 1.4rem 1.8rem 0.6rem 1.8rem;
+    text-transform: uppercase;
+    color: black;
+    font-family: 'Edu VIC WA NT Beginner', cursive;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+.description{
+    padding: 0 2rem;
+    margin-top: 0.5rem;
+}
+
+.mtb {
+    margin-top: 10vh;
+    margin-bottom: 20vh;
+}

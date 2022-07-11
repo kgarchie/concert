@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}<title>Home</title>{% endblock %}
+{% block content %}
+    {% load static %}
+    <section class="hero is-medium">
+        <img src="{% static 'images/concert-banner.jpg' %}" alt="">
+    </section>
+
+    <section class="is-flex is-justify-content-space-around is-flex-wrap-wrap">
+        {% for concert in concerts %}
+            <a class="card-container" href="{% url 'app:details' concert.concert_Date %}">
+                <div class="custom-card">
+                    <div class="custom-card-item">
+                        <h1 class="card-date-heading">{{ concert.concert_Date }}</h1>
+                        <h2 class="card-header heading is-flex is-justify-content-center is-size-5">Compositions</h2>
+                        {% for composition in concert.get_compositions %}
+                            <div class="description">{{ composition.composition_Name }}</div>
+                        {% endfor %}
+                        <p class="description"><b>Conductor:</b> {{ concert.conductor }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>Search Results</title> {% endblock %}
+
+{% block content %}
+    {% if concerts %}
+        {% for concert in concerts %}
+            <div class="card-container">
+                <div class="custom-card">
+                    <div class="custom-card-item">
+                        <h1 class="card-date-heading">{{ concert.concert_Date }}</h1>
+                        <h2 class="card-header heading is-flex is-justify-content-center is-size-5">Compositions</h2>
+                        {% for composition in concert.get_compositions %}
+                            <div class="description">{{ composition.composition_Name }}</div>
+                        {% endfor %}
+                        <p class="description"><b>Conductor:</b> {{ concert.conductor }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="container mb-5 is-danger">No search results returned</p>
+    {% endif %}
+{% endblock %}

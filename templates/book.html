@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}<title>Book</title>{% endblock %}
+{% block content %}
+    <style>
+        .card {
+            width: 25rem;
+            height: 18rem;
+        }
+
+        .card-content {
+            height: 12rem;
+        }
+
+        .blue {
+            color: white;
+            background-color: hsl(215, 95%, 50%);
+        }
+
+        .blue:hover {
+            color: white;
+            background-color: hsl(220, 90%, 50%);
+        }
+
+        .content {
+            height: 5rem;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .card {
+                width: 50vw;
+            }
+        }
+    </style>
+    <div class="card mt-6 container">
+        <header class="card-header">
+            <p class="card-header-title">
+                {{ concert.concert_Date }}
+            </p>
+            <button class="card-header-icon" aria-label="more options">
+                    <span class="icon">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+            </button>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <b>Compositions</b>
+                {% for composition in concert.get_compositions %}
+                    <div class="description">{{ composition.composition_Name }}</div>
+                {% endfor %}
+                <br>
+                <br>
+            </div>
+            <b>Time</b> <br>
+            <time datetime="2016-1-1" class="description">{{ concert.time }}</time>
+            <br>
+        </div>
+        <footer class="card-footer">
+            <form action="{% url 'app:book_request' concert.concert_Date concert.id %}" method="post" class="card-footer-item blue">
+                {% csrf_token %}
+                <button class="button blue" style="cursor: pointer" type="submit">Book</button>
+            </form>
+            {#            <a href="" class="card-footer-item green">Edit</a>          #}
+            {#            <a href="/delete/49" class="card-footer-item red">Delete</a>#}
+        </footer>
+    </div>
+{% endblock %}
